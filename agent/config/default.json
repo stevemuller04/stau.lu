@@ -1,0 +1,13 @@
+{
+	"mqtt": {
+		"hostname": "broker.kniwwelino.lu",
+		"port": 1883,
+		"username": "kniwwelino",
+		"password": "esp8266",
+		"topic_prefix": "8ct/stau.lu/"
+	},
+	"googlemapsapi": {
+		"url": "https://maps.googleapis.com/maps/api/distancematrix/json",
+		"key": ""
+	}
+}
