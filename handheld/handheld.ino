@@ -71,12 +71,27 @@ void setup()
   // Establish WiFi connection, or set up WiFi access point
   // where the user can connect to in order to configure WiFi
   WiFiManager wifiManager;
-  wifiManager.autoConnect(); // blocks until a connection has been made
+  wifiManager.setAPCallback(wifiConfigModeCallback);
+  wifiManager.setSaveConfigCallback(wifiSaveConfigCallback);
+  wifiManager.autoConnect("stau.lu"); // blocks until a connection has been made
 
   // Set up MQTT client
   mqtt.onConnect(mqttConnected);
   mqtt.client.onMessage(mqttMessageReceived);
   mqtt.connect();
+}
+
+void wifiConfigModeCallback(WiFiManager *wiFiManager) {
+  statusLed.setColor(0, 0, 0xFF);
+  statusLed.render();
+}
+
+void wifiSaveConfigCallback() {
+  statusLed.setColor(0, 0xFF, 0);
+  statusLed.render();
+  delay(1500);
+  statusLed.setColor(0, 0, 0);
+  statusLed.render();
 }
 
 void mqttConnected()
