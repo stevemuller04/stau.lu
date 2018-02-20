@@ -27,5 +27,6 @@ void RgbLed::render()
   if (needRender) {
     led.setPixelColor(0, r, g, b);
     led.show();
+    needRender = false;
   }
 }
