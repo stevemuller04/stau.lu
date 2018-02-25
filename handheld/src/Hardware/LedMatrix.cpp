@@ -65,8 +65,10 @@ bool LedMatrix::getPixel(uint8_t index) const
 
 void LedMatrix::clear()
 {
-  for (uint8_t i = 0; i < 8; i++)
+  for (uint8_t i = 0; i < 8; i++) {
+    needRender |= buffer[i] != 0;
     buffer[i] = 0;
+  }
 }
 
 void LedMatrix::render()
